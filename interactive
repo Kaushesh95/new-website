@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #28a745;
+            color: white;
+            padding: 20px 40px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #218838;
+        }
+
+        .feedback-message {
+            font-size: 20px;
+            color: #6c757d;
+            margin-top: 20px;
+        }
+
+        .form-container {
+            margin-top: 30px;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            padding: 10px;
+            margin: 5px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .form-container button {
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .animation {
+            margin-top: 40px;
+            display: none;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to the Interactive Website!</h1>
+        <p>Click the buttons, fill out the form, and enjoy the experience!</p>
+    </header>
+
+    <div class="container">
+        <button class="button" id="showMessageBtn">Click to Show a Message</button>
+        <button class="button" id="animateBtn">Click to Start Animation</button>
+        <button class="button" id="openFormBtn">Open Feedback Form</button>
+
+        <p class="feedback-message" id="feedbackMessage"></p>
+
+        <div class="form-container" id="feedbackForm" style="display: none;">
+            <h3>Leave Your Feedback</h3>
+            <form id="feedbackFormContent">
+                <input type="text" id="name" placeholder="Your Name" required><br>
+                <textarea id="feedback" placeholder="Your Feedback" rows="4" required></textarea><br>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+
+        <div class="animation" id="animation">
+            <div style="width: 50px; height: 50px; background-color: #28a745; border-radius: 50%; animation: bounce 2s infinite;"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Interactive Website | © 2025</p>
+    </footer>
+
+    <script>
+        // Show a feedback message when the "Click to Show a Message" button is clicked
+        document.getElementById("showMessageBtn").addEventListener("click", function() {
+            document.getElementById("feedbackMessage").textContent = "You clicked the button! Thanks for interacting!";
+            // Track event in Google Analytics
+            gtag('event', 'click', {
+                'event_category': 'button',
+                'event_label': 'Show Message Button',
+                'value': 1
+            });
+        });
+
+        // Start animation when the "Click to Start Animation" button is clicked
+        document.getElementById("animateBtn").addEventListener("click", function() {
+            document.getElementById("animation").style.display = "block";
+            // Track event in Google Analytics
+            gtag('event', 'click', {
+                'event_category': 'button',
+                'event_label': 'Start Animation Button',
+                'value': 1
+            });
+        });
+
+        // Open the feedback form when the "Open Feedback Form" button is clicked
+        document.getElementById("openFormBtn").addEventListener("click", function() {
+            document.getElementById("feedbackForm").style.display = "block";
+            // Track event in Google Analytics
+            gtag('event', 'click', {
+                'event_category': 'button',
+                'event_label': 'Open Feedback Form Button',
+                'value': 1
+            });
+        });
+
+        // Submit the feedback form and show a thank you message
+        document.getElementById("feedbackFormContent").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const feedback = document.getElementById("feedback").value;
+            alert("Thank you, " + name + "! Your feedback has been submitted: " + feedback);
+            // Track form submission in Google Analytics
+            gtag('event', 'submit', {
+                'event_category': 'form',
+                'event_label': 'Feedback Form',
+                'value': 1
+            });
+        });
+
+        // Keyframe animation for the bouncing ball
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        // Replace YOUR_TRACKING_ID with your actual Google Analytics Tracking ID
+        gtag('config', 'YOUR_TRACKING_ID');
+    </script>
+
+</body>
+</html>
